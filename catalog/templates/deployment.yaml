@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog
+  labels:
+    app: catalog  # Optional, deployment inherits labels from template
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: catalog
+  template:
+    metadata:
+      labels:  # Remove null and define labels here (if needed)
+        app: catalog  # Assuming this is the desired label
+    spec:
+      containers:
+        - name: catalog
+          image: 'us-east1-docker.pkg.dev/united-crane-423621-t9/catalog/catalog:latest'
+          ports:
+            - containerPort: 8000
+

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rent
+  labels:
+    app: rent  # Optional, deployment inherits labels from template
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rent
+  template:
+    metadata:
+      labels:  # Remove null and define labels here (if needed)
+        app: rent  # Assuming this is the desired label
+    spec:
+      containers:
+        - name: rent
+          image: 'us-east1-docker.pkg.dev/united-crane-423621-t9/rent/rent:latest'
+          ports:
+            - containerPort: 8000
+

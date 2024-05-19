@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth2
+  labels:
+    app: auth2  # Optional, deployment inherits labels from template
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: auth2
+  template:
+    metadata:
+      labels:  # Remove null and define labels here (if needed)
+        app: auth2  # Assuming this is the desired label
+    spec:
+      containers:
+        - name: auth
+          image: 'us-east1-docker.pkg.dev/united-crane-423621-t9/auth2/auth:latest'
+          ports:
+            - containerPort: 8000
+
