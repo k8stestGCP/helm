@@ -3,9 +3,11 @@ kind: Service
 metadata:
   name: catalog
 spec:
-  type: ClusterIP
-  ports:
-    - port: 8000
-      targetPort: 8000
+  type: LoadBalancer
   selector:
-    app: catalog
+    app: catalog  # Replace with the label selector for your deployment pods
+  ports:
+  - protocol: TCP
+    port: 80  # External port exposed by the LoadBalancer
+    targetPort: 8000  # Port your application listens on within the container
+

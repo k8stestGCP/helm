@@ -1,11 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth
+  name: auth2
+  labels:
+    app: auth2
 spec:
-  type: ClusterIP
-  ports:
-    - port: 8000
-      targetPort: 8000
+  type: LoadBalancer
   selector:
-    app: auth
+    app: auth2
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
